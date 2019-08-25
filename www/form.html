@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="http://localhost:5000/aaa" method="POST" id="form">
+        用户：<input type="text" name="name"><br>
+        密码：<input type="password" name="password"><br>
+        文件：<input type="file" name="file">
+        <input type="submit" id="oBtn" value="提交">
+    </form>
+</body>
+<script>
+    let oForm = document.getElementById('form');
+    oForm.onsubmit = function(){
+        let formData = new FormData(oForm);
+        let xhr = new XMLHttpRequest();
+        console.log(565656)
+        console.log(oForm.method,oForm.action)
+        xhr.open(oForm.method,oForm.action,true);
+        xhr.send(formData);
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                    console.log('上传成功')
+                }
+            }else{
+                console.log('上传失败')
+            }
+        }
+        return false;
+    }
+    </script>
+</html>
